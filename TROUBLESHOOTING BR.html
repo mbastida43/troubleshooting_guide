@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referência de Comandos de Rede Corporativa - Edição Sénior</title>
+    <style>
+        /* Paleta de Cores baseada na imagem original */
+        :root {
+            --bg-body: #0d141e; /* Fundo mais escuro fora da tabela */
+            --bg-table: #131d2c; /* Fundo das células da tabela */
+            --bg-header: #1a2a40; /* Fundo do cabeçalho da tabela */
+            --text-main: #ffffff; /* Texto principal */
+            --text-accent: #5db9ff; /* Azul claro para destaques e cabeçalhos */
+            --text-notes: #a0aec0; /* Cinza claro para as notas */
+            --border-color: #2c4263; /* Cor das bordas da tabela */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Tipografia do Cabeçalho Principal */
+        .main-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+        }
+
+        .main-header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .main-header h2 {
+            font-size: 1.8rem;
+            color: var(--text-accent);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .main-header p {
+            margin-top: 1rem;
+            color: var(--text-notes);
+            font-size: 1.1rem;
+            text-transform: none;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Estilos das Seções e Tabelas */
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--text-accent);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-top: 3rem;
+            text-transform: uppercase;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            background-color: var(--bg-table);
+        }
+
+        th, td {
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            vertical-align: middle;
+        }
+
+        th {
+            background-color: var(--bg-header);
+            color: var(--text-accent);
+            font-weight: 700;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.3;
+        }
+
+        th small {
+            display: block;
+            color: var(--text-main);
+            font-weight: normal;
+            font-size: 0.85rem;
+            margin-top: 0.2rem;
+        }
+
+        td:nth-child(1) { /* Propósito */
+            font-weight: 600;
+            width: 15%;
+        }
+
+        td:nth-child(2), td:nth-child(3), td:nth-child(4) { /* Comandos */
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.95rem;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.2);
+            width: 20%;
+        }
+
+        td:nth-child(5) { /* Notas */
+            color: var(--text-notes);
+            font-size: 0.95rem;
+            width: 25%;
+        }
+
+        tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-notes);
+            font-size: 0.9rem;
+        }
+
+        /* OTIMIZAÇÃO PARA IMPRESSÃO EM PDF (LinkedIn Carousel) */
+        @media print {
+            body {
+                background-color: var(--bg-body) !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                padding: 0;
+            }
+            .container {
+                max-width: 100%;
+                width: 100%;
+            }
+            .section-break {
+                page-break-before: always;
+            }
+            table {
+                page-break-inside: avoid;
+            }
+            tr {
+                page-break-inside: avoid;
+            }
+            .table-wrapper {
+                box-shadow: none;
+                border: 2px solid var(--border-color);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Main Header -->
+        <header class="main-header">
+            <h1>Referência de Comandos de Rede e SysAdmin</h1>
+            <h2>CMD vs. PowerShell vs. Linux Bash</h2>
+            <p>Guia de Sobrevivência para Arquitetos/SysAdmins Seniores - Troubleshooting</p>
+        </header>
+
+        <!-- SECTION 1: BASIC NETWORKS -->
+        <h3 class="section-title">1. Redes: Conectividade Básica & DNS</h3>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>PROPÓSITO<small>(Finalidade)</small></th>
+                        <th>CMD WINDOWS<small>(Legado/Rápido)</small></th>
+                        <th>POWERSHELL<small>(Moderno/Objeto)</small></th>
+                        <th>BASH LINUX<small>(Universal)</small></th>
+                        <th>NOTAS<small>(Notas do Veterano)</small></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Exibir Informações Básicas de IP</td>
+                        <td>ipconfig</td>
+                        <td>Get-NetIPAddress -AddressFamily IPv4</td>
+                        <td>ip addr show</td>
+                        <td>Ponto de partida universal. No Linux moderno, esqueça o <i>ifconfig</i>; <i>iproute2 (ip addr)</i> é o padrão.</td>
+                    </tr>
+                    <tr>
+                        <td>Ver Configuração Detalhada (MAC/DNS)</td>
+                        <td>ipconfig /all</td>
+                        <td>Get-NetIPConfiguration -All</td>
+                        <td>nmcli dev show</td>
+                        <td>Essencial para validar se o DHCP entregou o Gateway e os sufixos DNS corretos para a VLAN.</td>
+                    </tr>
+                    <tr>
+                        <td>Libertar / Renovar DHCP</td>
+                        <td>ipconfig /release<br>ipconfig /renew</td>
+                        <td>Restart-NetAdapter -Name "Eth0"</td>
+                        <td>dhclient -r<br>dhclient</td>
+                        <td><b>Melhor Prática:</b> Por vezes é mais rápido e limpo reiniciar a interface de rede inteira (toggle) do que esperar pela renegociação do DHCP.</td>
+                    </tr>
+                    <tr>
+                        <td>Limpar Cache DNS</td>
+                        <td>ipconfig /flushdns</td>
+                        <td>Clear-DnsClientCache</td>
+                        <td>resolvectl flush-caches</td>
+                        <td>Crítico após migrações de servidor ou falhas de propagação. Requer elevação (Admin/Root).</td>
+                    </tr>
+                    <tr>
+                        <td>Consulta e Pesquisa DNS</td>
+                        <td>nslookup &lt;host&gt;</td>
+                        <td>Resolve-DnsName &lt;host&gt;</td>
+                        <td>dig &lt;host&gt;</td>
+                        <td>O comando <i>dig</i> do Linux fornece os metadados mais precisos (TTL, NameServers). No PS, <i>Resolve-DnsName</i> é excelente para scripting.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SECTION 2: ADVANCED NETWORKS -->
+        <div class="section-break"></div>
+        <h3 class="section-title">2. Redes: Troubleshooting Avançado & Encaminhamento</h3>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>PROPÓSITO<small>(Finalidade)</small></th>
+                        <th>CMD WINDOWS<small>(Legado/Rápido)</small></th>
+                        <th>POWERSHELL<small>(Moderno/Objeto)</small></th>
+                        <th>BASH LINUX<small>(Universal)</small></th>
+                        <th>NOTAS<small>(Notas do Veterano)</small></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Testar Ligação (Ping)</td>
+                        <td>ping -t &lt;host&gt;</td>
+                        <td>Test-Connection &lt;host&gt;</td>
+                        <td>ping -c 4 &lt;host&gt;</td>
+                        <td>O ping do Linux é infinito por defeito (use -c). O ping contínuo (-t) no Windows salva vidas ao monitorizar reinícios de routers.</td>
+                    </tr>
+                    <tr>
+                        <td>Rastrear Rota (Descoberta de Caminho)</td>
+                        <td>tracert &lt;host&gt;</td>
+                        <td>Test-NetConnection -TraceRoute</td>
+                        <td>mtr &lt;host&gt;</td>
+                        <td><b>Dica de Sénior:</b> O <i>mtr</i> no Linux (My Traceroute) é imbatível; combina ping e traceroute em tempo real no ecrã.</td>
+                    </tr>
+                    <tr>
+                        <td>Verificar Portas e Sockets Abertos</td>
+                        <td>netstat -ano</td>
+                        <td>Get-NetTCPConnection</td>
+                        <td>ss -tulpn</td>
+                        <td>Identifica o que está à escuta na porta. O <i>ss</i> (Socket Statistics) substituiu o netstat no Linux porque é drasticamente mais rápido.</td>
+                    </tr>
+                    <tr>
+                        <td>Testar Porta Remota (Tipo Telnet)</td>
+                        <td><i>N/D (Requer Cliente Telnet)</i></td>
+                        <td>Test-NetConnection &lt;IP&gt; -Port &lt;Porta&gt;</td>
+                        <td>nc -zv &lt;IP&gt; &lt;Porta&gt;</td>
+                        <td>A prova de fogo da Firewall. O <i>Test-NetConnection (TNC)</i> é o canivete suíço moderno do Windows. No Linux, use o netcat (nc).</td>
+                    </tr>
+                    <tr>
+                        <td>Ver Tabela de Encaminhamento</td>
+                        <td>route print</td>
+                        <td>Get-NetRoute</td>
+                        <td>ip route show</td>
+                        <td>Diagnóstico obrigatório quando o servidor tem múltiplas NICs e o tráfego está a sair pelo gateway errado.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SECTION 3: OS & HARDWARE -->
+        <div class="section-break"></div>
+        <h3 class="section-title">3. Sistema Operativo: CPU & Memória</h3>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>PROPÓSITO<small>(Finalidade)</small></th>
+                        <th>CMD WINDOWS<small>(Legado/Rápido)</small></th>
+                        <th>POWERSHELL<small>(Moderno/Objeto)</small></th>
+                        <th>BASH LINUX<small>(Universal)</small></th>
+                        <th>NOTAS<small>(Notas do Veterano)</small></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Informação do Sistema & Kernel</td>
+                        <td>systeminfo | findstr "OS"</td>
+                        <td>Get-ComputerInfo</td>
+                        <td>uname -a / hostnamectl</td>
+                        <td>Primeiro passo ao entrar num servidor desconhecido: conhecer a build/kernel exata para compatibilidade.</td>
+                    </tr>
+                    <tr>
+                        <td>Uso de CPU/RAM em Tempo Real</td>
+                        <td>tasklist</td>
+                        <td>Get-Process | Sort CPU</td>
+                        <td>top / htop</td>
+                        <td>A CLI do Windows é fraca para visualização em tempo real. No Linux, o <i>htop</i> é o melhor amigo do SysAdmin para estrangulamentos.</td>
+                    </tr>
+                    <tr>
+                        <td>Verificar Memória Livre</td>
+                        <td>systeminfo | find "Memory"</td>
+                        <td>Get-CimInstance Win32_OperatingSystem</td>
+                        <td>free -m / free -h</td>
+                        <td><i>free -h</i> (human readable) dá a resposta em 1 segundo. Preste atenção à coluna "available" no Linux, não apenas à "free".</td>
+                    </tr>
+                    <tr>
+                        <td>Tempo de Atividade do Sistema (Uptime)</td>
+                        <td>systeminfo | find "Boot Time"</td>
+                        <td>(Get-CimInstance Win32_OperatingSystem).LastBootUpTime</td>
+                        <td>uptime / w</td>
+                        <td>Servidor lento? Verifique se reiniciou sozinho durante a noite (Crash/Atualizações) validando o uptime.</td>
+                    </tr>
+                    <tr>
+                        <td>Utilizadores com Sessão Iniciada</td>
+                        <td>quser / qwinsta</td>
+                        <td>Get-RDUserSession</td>
+                        <td>who / w</td>
+                        <td>Nunca reinicie um servidor crítico sem antes verificar se outro analista tem sessão iniciada na consola a realizar manutenção.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SECTION 4: STORAGE AND PROCESSES -->
+        <div class="section-break"></div>
+        <h3 class="section-title">4. Armazenamento, Discos & Processos</h3>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>PROPÓSITO<small>(Finalidade)</small></th>
+                        <th>CMD WINDOWS<small>(Legado/Rápido)</small></th>
+                        <th>POWERSHELL<small>(Moderno/Objeto)</small></th>
+                        <th>BASH LINUX<small>(Universal)</small></th>
+                        <th>NOTAS<small>(Notas do Veterano)</small></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Uso de Espaço em Disco (Volumes)</td>
+                        <td>wmic logicaldisk get size,freespace</td>
+                        <td>Get-Volume / Get-PSDrive</td>
+                        <td>df -h</td>
+                        <td>O clássico "Disco Cheio". <i>df -h</i> no Linux e <i>Get-Volume</i> no PS são autênticos salva-vidas em incidentes Sev 1.</td>
+                    </tr>
+                    <tr>
+                        <td>Encontrar Pastas Grandes</td>
+                        <td>dir /s /a /o-s</td>
+                        <td>Get-ChildItem -Recurse | Sort Length</td>
+                        <td>du -sh * | sort -h</td>
+                        <td>Disco cheio? Use <i>du -sh *</i> na raiz para descobrir exatamente qual pasta (geralmente logs) estourou.</td>
+                    </tr>
+                    <tr>
+                        <td>Matar Processo Bloqueado</td>
+                        <td>taskkill /F /PID &lt;pid&gt;</td>
+                        <td>Stop-Process -Id &lt;pid&gt; -Force</td>
+                        <td>kill -9 &lt;pid&gt;</td>
+                        <td>A marreta. O sinal <i>-9</i> (SIGKILL) no Linux e a flag <i>/F</i> no Windows matam a aplicação impiedosamente quando esta bloqueia o SO.</td>
+                    </tr>
+                    <tr>
+                        <td>Verificar Estado do Serviço</td>
+                        <td>sc query &lt;serviço&gt;</td>
+                        <td>Get-Service &lt;serviço&gt;</td>
+                        <td>systemctl status &lt;serviço&gt;</td>
+                        <td>O <i>systemctl status</i> do Linux moderno é brilhante porque apresenta as últimas linhas de log de erro do serviço juntamente com o seu estado.</td>
+                    </tr>
+                    <tr>
+                        <td>Reiniciar Daemon/Serviço</td>
+                        <td>net stop &lt;svc&gt; && net start &lt;svc&gt;</td>
+                        <td>Restart-Service &lt;serviço&gt;</td>
+                        <td>systemctl restart &lt;serviço&gt;</td>
+                        <td>A ação mais executada na história das TI. Reiniciar o serviço resolve 80% das falhas de aplicações.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <footer class="footer">
+            <p>&copy; Marlon Bastida - Guia de Troubleshooting - Julho / 2026</p>
+        </footer>
+    </div>
+
+</body>
+</html>
